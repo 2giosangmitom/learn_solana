@@ -8,7 +8,7 @@ pub struct Initialize<'info> {
         init,
         payer = admin,
         space = 8 + GlobalState::INIT_SPACE,
-        seeds = [constants::SEED.as_ref()],
+        seeds = [constants::SEED.as_bytes()],
         bump
     )]
     pub global_state: Account<'info, GlobalState>,

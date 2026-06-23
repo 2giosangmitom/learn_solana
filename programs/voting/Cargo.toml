@@ -11,9 +11,6 @@ name = "voting"
 [dependencies]
 anchor-lang = "1.0.2"
 
-[dev-dependencies]
-mollusk-svm = "~0.10"
-
 [features]
 default = []
 anchor-debug = []
