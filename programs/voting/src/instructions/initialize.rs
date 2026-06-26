@@ -189,7 +189,7 @@ mod tests {
             ],
         );
 
-        assert!(!second.program_result.is_ok());
+        assert!(second.program_result.is_err());
     }
 
     /// A different signer becomes the admin
