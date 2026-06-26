@@ -6,6 +6,7 @@ pub mod state;
 use anchor_lang::prelude::*;
 
 use instructions::*;
+use state::PollOption;
 
 declare_id!("DXZ1gUBaHsj5cKAfRGZjqYigWF7wv1Js2aHKwKVYtUVA");
 
@@ -24,5 +25,9 @@ pub mod voting {
         options: Vec<PollOption>,
     ) -> Result<()> {
         create_poll::CreatePoll::execute(ctx, title, description, options)
+    }
+
+    pub fn vote(ctx: Context<Vote>, poll_id: u64, option_index: u8) -> Result<()> {
+        vote::Vote::execute(ctx, poll_id, option_index)
     }
 }

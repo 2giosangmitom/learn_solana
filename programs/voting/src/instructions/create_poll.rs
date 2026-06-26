@@ -1,27 +1,9 @@
 use anchor_lang::prelude::*;
 
-use crate::{constants, state::GlobalState};
-
-#[derive(AnchorSerialize, AnchorDeserialize, Clone, InitSpace)]
-pub struct PollOption {
-    #[max_len(100)]
-    pub label: String,
-    pub votes: u32,
-}
-
-#[account]
-#[derive(InitSpace)]
-pub struct PollAccount {
-    pub id: u64,
-    pub owner: Pubkey,
-    pub bump: u8,
-    #[max_len(100)]
-    pub title: String,
-    #[max_len(200)]
-    pub description: String,
-    #[max_len(10)]
-    pub options: Vec<PollOption>,
-}
+use crate::{
+    constants,
+    state::{GlobalState, PollAccount, PollOption},
+};
 
 #[derive(Accounts)]
 pub struct CreatePoll<'info> {
@@ -72,9 +54,7 @@ mod tests {
         crate::{constants, state::GlobalState},
         anchor_lang::{solana_program::instruction::Instruction, system_program, InstructionData},
         mollusk_svm::{
-            program::keyed_account_for_system_program,
-            result::types::InstructionResult,
-            Mollusk,
+            program::keyed_account_for_system_program, result::types::InstructionResult, Mollusk,
         },
         solana_sdk::account::Account,
     };
@@ -173,8 +153,7 @@ mod tests {
         let owner = Pubkey::new_unique();
         let program_id = crate::ID;
 
-        let init_result =
-            initialize_global_state(&mollusk, program_id, admin, global_state);
+        let init_result = initialize_global_state(&mollusk, program_id, admin, global_state);
 
         let poll_count_bytes = 0_u64.to_le_bytes();
         let (poll_account, _) = Pubkey::find_program_address(
@@ -263,8 +242,7 @@ mod tests {
         let owner = Pubkey::new_unique();
         let program_id = crate::ID;
 
-        let init_result =
-            initialize_global_state(&mollusk, program_id, admin, global_state);
+        let init_result = initialize_global_state(&mollusk, program_id, admin, global_state);
 
         // First poll
         let poll_count_bytes_0 = 0_u64.to_le_bytes();
@@ -457,8 +435,7 @@ mod tests {
         let owner = Pubkey::new_unique();
         let program_id = crate::ID;
 
-        let init_result =
-            initialize_global_state(&mollusk, program_id, admin, global_state);
+        let init_result = initialize_global_state(&mollusk, program_id, admin, global_state);
 
         let poll_count_bytes = 0_u64.to_le_bytes();
         let (poll_account, _) = Pubkey::find_program_address(
@@ -518,8 +495,7 @@ mod tests {
         let owner = Pubkey::new_unique();
         let program_id = crate::ID;
 
-        let init_result =
-            initialize_global_state(&mollusk, program_id, admin, global_state);
+        let init_result = initialize_global_state(&mollusk, program_id, admin, global_state);
 
         let poll_count_bytes = 0_u64.to_le_bytes();
         let (poll_account, _) = Pubkey::find_program_address(
