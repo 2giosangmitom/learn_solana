@@ -19,22 +19,23 @@ pub struct Initialize<'info> {
     pub system_program: Program<'info, System>,
 }
 
-pub fn execute(ctx: Context<Initialize>) -> Result<()> {
-    let state = &mut ctx.accounts.global_state;
+impl<'info> Initialize<'info> {
+    pub fn execute(ctx: Context<Initialize>) -> Result<()> {
+        let state = &mut ctx.accounts.global_state;
 
-    state.admin = ctx.accounts.admin.key();
-    state.poll_count = 0;
+        state.admin = ctx.accounts.admin.key();
+        state.poll_count = 0;
 
-    Ok(())
+        Ok(())
+    }
 }
 
 #[cfg(test)]
 mod tests {
     use {
+        super::*,
         crate::{constants, state::GlobalState},
-        anchor_lang::{
-            prelude::*, solana_program::instruction::Instruction, system_program, InstructionData,
-        },
+        anchor_lang::{solana_program::instruction::Instruction, system_program, InstructionData},
         mollusk_svm::{program::keyed_account_for_system_program, Mollusk},
         solana_sdk::account::Account,
     };

@@ -14,6 +14,15 @@ pub mod voting {
     use super::*;
 
     pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
-        initialize::execute(ctx)
+        initialize::Initialize::execute(ctx)
+    }
+
+    pub fn create_poll(
+        ctx: Context<CreatePoll>,
+        title: String,
+        description: String,
+        options: Vec<PollOption>,
+    ) -> Result<()> {
+        create_poll::CreatePoll::execute(ctx, title, description, options)
     }
 }
