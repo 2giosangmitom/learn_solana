@@ -14,6 +14,6 @@ pub mod voting {
     use super::*;
 
     pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
-        initialize::initialize_handler(ctx)
+        initialize::execute(ctx)
     }
 }

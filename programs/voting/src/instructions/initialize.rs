@@ -18,7 +18,7 @@ pub struct Initialize<'info> {
     pub system_program: Program<'info, System>,
 }
 
-pub fn initialize_handler(ctx: Context<Initialize>) -> Result<()> {
+pub fn execute(ctx: Context<Initialize>) -> Result<()> {
     let state = &mut ctx.accounts.global_state;
     state.admin = ctx.accounts.admin.key();
     state.poll_count = 0;
