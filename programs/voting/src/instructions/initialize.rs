@@ -25,3 +25,14 @@ pub fn initialize_handler(ctx: Context<Initialize>) -> Result<()> {
 
     Ok(())
 }
+
+#[cfg(test)]
+mod tests {
+    use mollusk_svm::{result::Check, Mollusk};
+    use solana_sdk::{instruction::Instruction, pubkey::Pubkey};
+
+    #[test]
+    fn test_initialize() {
+        
+    }
+}

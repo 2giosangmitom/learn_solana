@@ -1,6 +1,8 @@
 allowBuilds:
   bufferutil: true
+  esbuild: false
   utf-8-validate: true
 
 packages:
   - app
+  - slide

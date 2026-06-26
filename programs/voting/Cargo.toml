@@ -25,3 +25,7 @@ test-sbf = []
 
 [lints.rust]
 unexpected_cfgs = { level = "warn", check-cfg = ['cfg(target_os, values("solana"))'] }
+
+[dev-dependencies]
+mollusk-svm = "0.13.2"
+solana-sdk = "2.2.0"
