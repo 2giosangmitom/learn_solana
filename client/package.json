@@ -1,5 +1,10 @@
 {
   "name": "client",
+  "type": "module",
+  "main": "./src/generated/index.ts",
+  "exports": {
+    ".": "./src/generated/index.ts"
+  },
   "dependencies": {
     "@codama/nodes-from-anchor": "^1.5.1",
     "@codama/renderers-js": "^2.3.0",
