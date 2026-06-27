@@ -12,7 +12,7 @@ This skill produces a **theme bundle** under `themes/`: two paired files that to
 
 Both files share the same stem so the runtime can pair them automatically.
 
-A theme is **distinct from a slide's `design` const**. The theme markdown is authoring-time aesthetic direction (copied into a real slide's source by `create-slide`). The demo `.tsx` is a self-contained preview, not a real slide — it does not appear in the slides list. A per-slide `const design: DesignSystem = { … }` (declared at the top of `slides/<id>/index.tsx`) is the runtime tokens object the user can tweak from the Design panel. The markdown commits the *direction*; the per-slide `design` const makes the slide *tweakable*; the demo `.tsx` makes the theme *previewable*.
+A theme is **distinct from a slide's `design` const**. The theme markdown is authoring-time aesthetic direction (copied into a real slide's source by `create-slide`). The demo `.tsx` is a self-contained preview, not a real slide — it does not appear in the slides list. A per-slide `const design: DesignSystem = { … }` (declared at the top of `slides/<id>/index.tsx`) is the runtime tokens object the user can tweak from the Design panel. The markdown commits the _direction_; the per-slide `design` const makes the slide _tweakable_; the demo `.tsx` makes the theme _previewable_.
 
 You only write files under `themes/<id>.md` and `themes/<id>.demo.tsx`. Never modify real slides or other configuration. The canvas / type-scale defaults that themes can override live in the **`slide-authoring`** skill — read it before writing the theme so your overrides are stated explicitly.
 
@@ -93,9 +93,9 @@ const Title = ({ children }: { children: React.ReactNode }) => (
       fontSize: 140,
       fontWeight: 900,
       lineHeight: 1.05,
-      letterSpacing: '-0.02em',
+      letterSpacing: "-0.02em",
       margin: 0,
-      color: '#f8fafc',
+      color: "#f8fafc",
     }}
   >
     {children}
@@ -108,25 +108,27 @@ const Title = ({ children }: { children: React.ReactNode }) => (
 Pull the page number from `useSlidePageNumber()` — never hardcode `pageNum` / `total` props.
 
 ```tsx
-import { useSlidePageNumber } from '@open-slide/core';
+import { useSlidePageNumber } from "@open-slide/core";
 
 const Footer = () => {
   const { current, total } = useSlidePageNumber();
   return (
     <div
       style={{
-        position: 'absolute',
+        position: "absolute",
         left: 120,
         right: 120,
         bottom: 60,
-        display: 'flex',
-        justifyContent: 'space-between',
+        display: "flex",
+        justifyContent: "space-between",
         fontSize: 24,
-        color: '#94a3b8',
+        color: "#94a3b8",
       }}
     >
       <span>EDITORIAL NOIR · 2026</span>
-      <span>{current} / {total}</span>
+      <span>
+        {current} / {total}
+      </span>
     </div>
   );
 };
@@ -136,9 +138,7 @@ const Footer = () => {
 
 ```tsx
 const Eyebrow = ({ children }: { children: React.ReactNode }) => (
-  <div style={{ fontSize: 26, letterSpacing: '0.2em', color: '#fbbf24' }}>
-    {children}
-  </div>
+  <div style={{ fontSize: 26, letterSpacing: "0.2em", color: "#fbbf24" }}>{children}</div>
 );
 ```
 
@@ -149,8 +149,14 @@ const Eyebrow = ({ children }: { children: React.ReactNode }) => (
 
 ```css
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 ```
 
@@ -162,10 +168,21 @@ One paragraph. What it feels like, the references it draws on, what to avoid (e.
 
 ```tsx
 const Cover: Page = () => (
-  <div style={{ width: '100%', height: '100%', background: '#0f172a', color: '#f8fafc', padding: 120, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+  <div
+    style={{
+      width: "100%",
+      height: "100%",
+      background: "#0f172a",
+      color: "#f8fafc",
+      padding: 120,
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+    }}
+  >
     <Eyebrow>CHAPTER 01</Eyebrow>
     <Title>The Big Idea</Title>
-    <p style={{ fontSize: 36, color: '#94a3b8', maxWidth: 1200, marginTop: 32 }}>
+    <p style={{ fontSize: 36, color: "#94a3b8", maxWidth: 1200, marginTop: 32 }}>
       A short subtitle that explains what this slide is about.
     </p>
     <Footer />

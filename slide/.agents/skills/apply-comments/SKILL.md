@@ -5,11 +5,11 @@ description: Apply pending @slide-comment markers written by the open-slide insp
 
 # Apply slide comments
 
-The open-slide editor has an inspector tool that lets the user click on a rendered page element and attach a textual comment (e.g. *"make this red"*, *"change to 'Open Slide Rocks'"*). Each comment is persisted as an in-source JSX marker inside `slides/<slideId>/index.tsx`.
+The open-slide editor has an inspector tool that lets the user click on a rendered page element and attach a textual comment (e.g. _"make this red"_, _"change to 'Open Slide Rocks'"_). Each comment is persisted as an in-source JSX marker inside `slides/<slideId>/index.tsx`.
 
 Your job: read those markers, perform the described edits, and delete the markers.
 
-> **Before making any page edit**, consult the **`slide-authoring`** skill — it is the technical reference for how `slides/<id>/index.tsx` is structured (canvas, type scale, palette, assets, file contract). A comment like *"make this bigger"* or *"change the accent colour"* should be applied in a way that stays consistent with those rules.
+> **Before making any page edit**, consult the **`slide-authoring`** skill — it is the technical reference for how `slides/<id>/index.tsx` is structured (canvas, type scale, palette, assets, file contract). A comment like _"make this bigger"_ or _"change the accent colour"_ should be applied in a way that stays consistent with those rules.
 
 ## Marker format
 
@@ -17,7 +17,7 @@ Your job: read those markers, perform the described edits, and delete the marker
 {/* @slide-comment id="c-<8hex>" ts="<ISO>" text="<base64url(JSON)>" */}
 ```
 
-- Always sits on its own line as the **first child inside** the JSX element it refers to (i.e. between that element's opening `>` and its other children). The marker is dropped *into* its target, not floated above it.
+- Always sits on its own line as the **first child inside** the JSX element it refers to (i.e. between that element's opening `>` and its other children). The marker is dropped _into_ its target, not floated above it.
 - `text` is base64url-encoded JSON: `{"note": "...", "hint"?: "..."}`.
 - Detection regex (authoritative — use exactly this):
 
@@ -61,8 +61,8 @@ Your job: read those markers, perform the described edits, and delete the marker
 
 ```js
 function decode(s) {
-  const pad = s.length % 4 === 0 ? '' : '='.repeat(4 - (s.length % 4));
-  return Buffer.from(s.replace(/-/g, '+').replace(/_/g, '/') + pad, 'base64').toString('utf8');
+  const pad = s.length % 4 === 0 ? "" : "=".repeat(4 - (s.length % 4));
+  return Buffer.from(s.replace(/-/g, "+").replace(/_/g, "/") + pad, "base64").toString("utf8");
 }
 ```
 

@@ -79,7 +79,7 @@ Path is relative to the project root (the user's `cwd`, the directory that conta
 - **Older than ~5 minutes, or older than your last interaction with the user**: confirm with the user before editing. The dev server may not be running; the user may have switched contexts.
 - **Hours/days old**: ignore it. Ask the user which slide they mean.
 
-A *newer* `updatedAt` than the one you saw last turn is the normal signal that the user has moved — switch to the new `slideId` / `pageIndex` / `selection` without asking.
+A _newer_ `updatedAt` than the one you saw last turn is the normal signal that the user has moved — switch to the new `slideId` / `pageIndex` / `selection` without asking.
 
 ## When the file is missing
 

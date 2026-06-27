@@ -5,7 +5,7 @@ description: Use this skill when the user wants to create, draft, author, or gen
 
 # Create a slide in open-slide
 
-This skill owns the **workflow** for drafting a new deck. The technical reference — file contract, 1920×1080 canvas, type scale, palette, layout, assets — lives in the **`slide-authoring`** skill. Read that skill whenever you need details on *how* a page is structured. This skill assumes you'll consult it before writing code.
+This skill owns the **workflow** for drafting a new deck. The technical reference — file contract, 1920×1080 canvas, type scale, palette, layout, assets — lives in the **`slide-authoring`** skill. Read that skill whenever you need details on _how_ a page is structured. This skill assumes you'll consult it before writing code.
 
 You only write files under `slides/<id>/`. Never modify `package.json`, `open-slide.config.ts`, or existing slides.
 
@@ -22,16 +22,16 @@ If you skip the aesthetic question because a theme was picked, restate the theme
 
 **Before writing any code, lock in the four key style decisions below via `AskUserQuestion`.** They shape every downstream choice (layout, type scale, asset needs, motion code), so locking them in up front avoids rework. Only skip a question when the user's original message already gave an unambiguous answer for it — and if you skip, restate your assumption so they can correct it.
 
-**Topic comes first.** A meaningful aesthetic recommendation requires knowing what the deck is about. If the user's initial request is thin ("make me a deck", "draft some slides"), make a *separate* `AskUserQuestion` call first to gather topic, audience, and any draft outline. Skip this only if the topic is already clear from the user's message — in which case restate your reading of the topic in the next call so they can correct course.
+**Topic comes first.** A meaningful aesthetic recommendation requires knowing what the deck is about. If the user's initial request is thin ("make me a deck", "draft some slides"), make a _separate_ `AskUserQuestion` call first to gather topic, audience, and any draft outline. Skip this only if the topic is already clear from the user's message — in which case restate your reading of the topic in the next call so they can correct course.
 
 Then ask these four in a single `AskUserQuestion` call (multi-question form):
 
-1. **Aesthetic direction** — propose 3 visual directions tailored to *this* topic. Do **not** pull from a fixed preset list. Each option must combine a vibe word + a concrete visual cue (palette, typography, motif) so the user can picture it; bare labels like "minimal" or "corporate" alone are too vague. The three options should feel meaningfully different from each other — not three flavors of the same idea.
+1. **Aesthetic direction** — propose 3 visual directions tailored to _this_ topic. Do **not** pull from a fixed preset list. Each option must combine a vibe word + a concrete visual cue (palette, typography, motif) so the user can picture it; bare labels like "minimal" or "corporate" alone are too vague. The three options should feel meaningfully different from each other — not three flavors of the same idea.
 
    How options should shift with topic:
-   - *"Intro to Rust for backend engineers"* → **rust-orange technical editorial** (warm rust/charcoal, mono headings, code-grid layout) · **blueprint dev-doc** (cyan grid on near-black, monospace, schematic feel) · **brutalist terminal** (lime-on-black, ASCII rules, no-nonsense)
-   - *"Q2 product roadmap for stakeholders"* → **calm corporate clean** (off-white, single accent, generous whitespace) · **confident editorial** (large display serif, tight grid, one bold accent) · **data-forward dashboard** (charts as hero, muted neutrals + status colors)
-   - *"Kindergarten parent night"* → **playful crayon** (paper texture, hand-drawn accents, primary colors) · **soft pastel storybook** (peach/mint, rounded type, illustrated icons) · **warm photo-led** (full-bleed kid photos, simple captions)
+   - _"Intro to Rust for backend engineers"_ → **rust-orange technical editorial** (warm rust/charcoal, mono headings, code-grid layout) · **blueprint dev-doc** (cyan grid on near-black, monospace, schematic feel) · **brutalist terminal** (lime-on-black, ASCII rules, no-nonsense)
+   - _"Q2 product roadmap for stakeholders"_ → **calm corporate clean** (off-white, single accent, generous whitespace) · **confident editorial** (large display serif, tight grid, one bold accent) · **data-forward dashboard** (charts as hero, muted neutrals + status colors)
+   - _"Kindergarten parent night"_ → **playful crayon** (paper texture, hand-drawn accents, primary colors) · **soft pastel storybook** (peach/mint, rounded type, illustrated icons) · **warm photo-led** (full-bleed kid photos, simple captions)
 
    Mark the option that best fits the topic and audience as "(Recommended)" so the user has a sensible default. (`AskUserQuestion` already auto-adds "Other" — don't add a generic catch-all yourself.)
 
@@ -49,16 +49,16 @@ Use **kebab-case**, short, descriptive. Examples: `rust-intro`, `q2-roadmap`, `t
 
 Sketch the slide as a list of page roles before writing code. Common page types:
 
-| Role             | Purpose                                       |
-| ---------------- | --------------------------------------------- |
-| Cover            | Title + subtitle, strong visual               |
-| Agenda           | What's coming (3–5 items)                     |
-| Section divider  | Big label between chapters                    |
-| Content          | Heading + 2–5 bullets OR heading + one visual |
-| Big number       | One statistic the size of the canvas          |
-| Quote            | Pull-quote with attribution                   |
-| Comparison       | Two-column before/after or A vs B             |
-| Closing          | CTA, thanks, contact                          |
+| Role            | Purpose                                       |
+| --------------- | --------------------------------------------- |
+| Cover           | Title + subtitle, strong visual               |
+| Agenda          | What's coming (3–5 items)                     |
+| Section divider | Big label between chapters                    |
+| Content         | Heading + 2–5 bullets OR heading + one visual |
+| Big number      | One statistic the size of the canvas          |
+| Quote           | Pull-quote with attribution                   |
+| Comparison      | Two-column before/after or A vs B             |
+| Closing         | CTA, thanks, contact                          |
 
 **Rule of thumb**: one idea per page. If you're tempted to put two, split them.
 
