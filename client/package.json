@@ -1,6 +1,12 @@
 {
   "name": "client",
   "dependencies": {
-    "codama": "^1.8.0"
+    "@codama/nodes-from-anchor": "^1.5.1",
+    "@codama/renderers-js": "^2.3.0",
+    "codama": "^1.8.0",
+    "@solana/program-client-core": "^6.10.0"
+  },
+  "peerDependencies": {
+    "@solana/kit": "^6.10.0"
   }
 }
